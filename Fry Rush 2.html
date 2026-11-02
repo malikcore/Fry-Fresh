@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fry Rush | Crispy Chicken, Wings & Burgers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{--green:#0e3a21;
+--green2:#14502d;
+--yellow:#f6c315;
+--red:#d8261d;
+--paper:#fffdf6;
+--ink:#17201a;
+--mute:#5d6b61;
+--line:#d9d3bd;
+
+box-sizing:border-box;
+padding-top:env(safe-area-inset-top,0px);
+padding-bottom:env(safe-area-inset-bottom,0px)}
+
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#101a14;
+--ink:#f3f0e2;
+--mute:#a4b0a7;
+--line:#2d4034}}
+
+:root[data-theme="dark"]{--paper:#101a14;--ink:#f3f0e2;
+--mute:#a4b0a7;--line:#2d4034}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);
+scroll-behavior:smooth}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Barlow,system-ui,sans-serif;font-size:17px;line-height:1.5}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yellow);
+    outline-offset:2px}
+
+.top{position:sticky;
+    top:env(safe-area-inset-top,0px);
+    z-index:5;display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    background:var(--green);
+    color:#fff}
+
+.top .brand{display:flex;
+    align-items:center;gap:10px}
+
+.top .brand img{width:44px;
+    height:44px;
+    border-radius:50%;
+    display:block}
+
+.hero .logo{width:clamp(110px,22vw,170px);
+    height:auto;
+    display:block;
+    margin:0 0 22px;
+    border-radius:50%;
+    box-shadow:0 0 0 4px var(--yellow)}
+
+.top b{font-family:Anton,Impact,sans-serif;
+    font-size:24px;
+    letter-spacing:.04em;
+    font-weight:400;
+    color:var(--yellow)}
+
+.btn{display:inline-block;
+    padding:12px 22px;
+    border-radius:999px;
+    font-weight:600;
+    text-decoration:none;
+    border:2px solid var(--yellow);
+    background:var(--yellow);
+    color:#1a1a0a}
+
+.btn.alt{background:transparent;
+    color:#fff}
+
+.btn.sm{padding:7px 16px;
+    font-size:15px}
+
+.hero{background:var(--green);
+    color:#fff;
+    padding:56px 20px 90px;
+    position:relative;
+    overflow:hidden}
+
+.hero .in{max-width:1000px;
+    margin:auto}
+
+.hero h1{font-family:Anton,Impact,sans-serif;font-weight:400;
+    font-size:clamp(84px,22vw,230px);
+    line-height:.86;margin:0;
+    text-transform:uppercase;
+    color:var(--yellow);
+    transform:skew(-8deg);
+    letter-spacing:.01em}
+
+.hero h1 span{display:block;
+    color:#fff;margin-left:.6em}
+
+.hero p{max-width:30em;
+    font-size:20px;
+    margin:28px 0 26px;
+    color:#e6f0e8}
+
+.cta{display:flex;
+    gap:12px;
+    flex-wrap:wrap}
+
+.strip{position:absolute;
+    left:-20px;
+    right:-20px;
+    bottom:0;
+    background:var(--red);
+    color:#fff;
+    padding:12px 40px;
+    transform:rotate(-1.2deg);
+    font-weight:600;
+    text-align:center}
+
+main{max-width:1000px;margin:auto;padding:56px 20px 30px}
+
+h2{font-family:Anton,Impact,sans-serif;
+    font-weight:400;font-size:clamp(34px,6vw,56px);
+    margin:0 0 8px;text-transform:uppercase}
+
+.sub{color:var(--mute);
+    margin:0 0 24px}
+
+.tabs{display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:10px;
+    margin-bottom:22px;
+    border-bottom:2px solid var(--ink)}
+
+.tabs button{flex:none;
+    font:600 16px Barlow,sans-serif;
+    padding:10px 18px;
+    border:2px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    border-radius:999px;
+    cursor:pointer}
+
+.tabs button[aria-selected="true"]{background:var(--green);
+    border-color:var(--green);
+    color:var(--yellow)}
+
+.switch{display:inline-flex;
+    border:2px solid var(--ink);
+    border-radius:999px;
+    overflow:hidden;
+    margin-bottom:18px}
+
+.switch button{font:600 15px Barlow,sans-serif;
+    padding:8px 20px;border:0;
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer}
+
+.switch button[aria-pressed="true"]{background:var(--red);
+    color:#fff}
+
+.group{margin-bottom:34px}
+
+.group h3{font-family:Anton,Impact,sans-serif;
+    font-weight:400;
+    font-size:28px;
+    margin:0 0 4px;
+    letter-spacing:.02em}
+
+.note{color:var(--mute);
+    font-size:15px;
+    margin:0 0 10px}
+
+.row{display:flex;
+    align-items:baseline;
+    gap:10px;padding:8px 0}
+
+.row .n{flex:none}
+
+.row .d{flex:1;
+    border-bottom:2px dotted var(--line);
+    transform:translateY(-4px)}
+
+.row .p{flex:none;
+    font-weight:600;
+    font-variant-numeric:tabular-nums}
+
+.row small{display:block;
+    color:var(--mute);
+    font-size:14px;
+    font-weight:400}
+
+.combo{border:2px solid var(--ink);
+    border-radius:14px;
+    padding:16px 18px;
+    margin-bottom:14px;
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    align-items:flex-start}
+
+.combo h3{margin:0;
+    font-size:26px}
+
+.combo p{margin:4px 0 0;
+    color:var(--mute);
+    font-size:15px}
+
+.combo .p{font-family:Anton,Impact,sans-serif;
+    font-size:28px;
+    color:var(--red);
+    white-space:nowrap}
+
+.panel[hidden]{display:none}
+
+.cols{display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 40px}
+
+@media(max-width:720px){.cols{grid-template-columns:1fr}.top .btn.alt{display:none}}
+.visit{background:var(--green);
+    color:#fff;
+    padding:50px 20px 40px;
+    margin-top:40px};
+
+.visit .in{max-width:1000px;
+    margin:auto;display:flex;
+    flex-wrap:wrap;gap:30px;
+    justify-content:space-between;
+    align-items:center}
+
+.visit h2{color:var(--yellow);
+    margin:0}
+
+.visit p{margin:4px 0}
+
+footer{background:#0a2916;
+    color:#a9bdae;
+    text-align:center;
+    padding:16px;
+    font-size:14px}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.gal{background:var(--yellow);padding:50px 20px 56px}
+.gal .in{max-width:1000px;margin:auto}
+.gal h2{color:#1a1a0a}
+.gal .sub{color:#4a4318}
+
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.grid figure{margin:0;background:#fff;border-radius:12px;overflow:hidden;border:2px solid #1a1a0a}
+.grid img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#fff}
+.grid figcaption{padding:8px 10px;font-weight:600;font-size:14px;line-height:1.25;color:#1a1a0a;background:#fff}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+
+<body>
+<header class="top">
+    <span class="brand">
+        <img src="img/logo/WhatsApp Image 2026-11-02 at 14.32.04.jpeg" alt="Fry Rush logo">
+        <b>FRY RUSH</b></span>
+        <span>
+            <a class="btn alt sm" href="#menu">Menu</a>
+            <a class="btn sm" href="tel:0771919567">Call 077 19 19 567</a>
+        </span>
+</header>
+
+<section class="hero">
+<div class="in">
+<img class="logo" src="img/logo/WhatsApp Image 2026-11-02 at 14.32.04.jpeg" alt="Fry Rush logo">
+<h1>Fry<span>Rush</span></h1>
+<p>Crispy chicken, wings, burgers and fries, fried fresh every evening. Order for Take away dine in & delivery.</p>
+<div class="cta">
+    <a class="btn" href="https://wa.me/94771919567?text=Hi%20Fry%20Rush%2C%20I%20want%20to%20place%20an%20order">Order on WhatsApp</a>
+    <a class="btn alt" href="#menu">See the menu</a>
+</div>
+</div>
+
+<div class="strip">Open 6 days · 4.30 PM to 11.30 PM · Take-away available</div>
+</section>
+
+<section class="gal" id="gallery">
+    <div class="in">
+        <h2>Fresh from the fryer</h2>
+        <p class="sub">A look at what is on the menu.</p>
+        <div class="grid">
+        <figure>
+            <img src="img/kfc_drumstick.jpg" alt="Drumsticks" loading="lazy">
+            <figcaption>Drumsticks</figcaption></figure>
+<figure><img src="img/🧀 Ultimate Cheese Loaded Chicken Burger 🍔 _ Crispy, Juicy & Mouth-Watering Food Photography.jpg" loading="lazy">
+    <figcaption>Premium cheese chicken burger</figcaption></figure>
+<figure><img src="img/crispy chicken.jpg" alt="Crispy chicken" loading="lazy"><figcaption>Crispy chicken</figcaption></figure>
+<figure><img src="img/submarine 2.png" alt="Submarine" loading="lazy"><figcaption>Submarine</figcaption></figure>
+<figure><img src="img/Dynamic Fried Chicken Wings Explosion with Crispy Breading and Seasoning Splash.jpg" alt="Crispy wings" loading="lazy"><figcaption>Crispy wings</figcaption></figure>
+<figure><img src="img/40 Trendy Crispy Golden Fried Chicken Wallpaper HD.jpg" alt="Drumlets" loading="lazy"><figcaption>Drumlets</figcaption></figure>
+<figure><img src="img/french fries.jpg" alt="French fries" loading="lazy"><figcaption>French fries</figcaption></figure>
+<figure><img src="img/premuim cheese chicken burger.webp" alt="Chicken burger" loading="lazy"><figcaption>Chicken burger</figcaption></figure>
+<figure><img src="img/•Restaurant-style fried cheese balls at home_.jpg" alt="Cheese balls" loading="lazy"><figcaption>Cheese balls</figcaption></figure>
+<figure><img src="img/Creamy Chicken Soup.jpg" alt="Special chicken soup" loading="lazy"><figcaption>Special chicken soup</figcaption></figure>
+</div></div></section>
+<main id="menu">
+<h2>The menu</h2>
+<p class="sub">All prices in Sri Lankan rupees (Rs.).</p>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div id="panels"></div>
+</main>
+
+<section class="visit">
+<div class="in">
+<div><h2>Hungry now?</h2><p>Open 6 days, 4.30 PM to 11.30 PM</p><p>Hotline: <a href="tel:0771919567"><b>077 19 19 567</b></a></p></div>
+<div class="cta"><a class="btn" href="tel:0771919567">Call to order</a><a class="btn alt" href="https://wa.me/94771919567">WhatsApp</a></div>
+</div>
+</section>
+<footer>© Fry Rush. Prices may change without notice.</footer>
+
+<script>
+const rows=a=>a.map(([n,p,s])=>`<div class="row"><span class="n">${n}${s?`<small>${s}</small>`:''}</span><span class="d"></span><span class="p">Rs. ${p}</span></div>`).join('');
+const group=(t,note,a)=>`<div class="group"><h3>${t}</h3>${note?`<p class="note">${note}</p>`:''}${rows(a)}</div>`;
+const pcs=[1,3,6,10], wp=[1,3,6,12];
+const chicken={n:[530,1570,3120,5200],s:[550,1630,3240,5400]};
+const wings={n:[230,670,1330,2650],s:[250,730,1450,2890]};
+const combos=[
+['Little Champ Combo',750,'1 crispy wing, 3 cheese balls, small fries, small Pepsi'],
+['Value Saver Pack',1200,'1 pc crispy chicken, chicken burger, small fries, small Pepsi'],
+['Couple Pack',1800,'3 crispy wings, 1 pc crispy chicken, medium fries, 2 small Pepsi'],
+['Family Feast Combo',5950,'10 crispy wings, 5 pcs crispy chicken, large fries, large Pepsi']];
+const tabs=[
+['Chicken & wings',()=>`<div class="switch" role="group" aria-label="Flavour"><button aria-pressed="true" data-f="n">Normal</button><button aria-pressed="false" data-f="s">Spicy</button></div><div class="cols"><div id="ck"></div><div id="wg"></div></div>`],
+['Burgers & subs',()=>`<div class="cols"><div>${group('Chicken burger','',[['With cheese',545],['Without cheese',395]])}${group('Premium cheese chicken burger','Large',[['Large',700]])}</div><div>${group('Submarine','',[['With cheese','1,050'],['Without cheese',900]])}</div></div>`],
+['Drumsticks',()=>`<div class="cols"><div>${group('Drumsticks','Spicy: add Rs. 20 per piece',[['1 pc',350],['5 pcs','1,700'],['10 pcs','3,400']])}</div><div>${group('Drumlets with spicy','',[['6 pcs',675],['12 pcs','1,300']])}</div></div>`],
+['Combo packs',()=>combos.map(c=>`<div class="combo"><div><h3>${c[0]}</h3><p>${c[2]}</p></div><span class="p">Rs. ${c[1].toLocaleString()}</span></div>`).join('')],
+['Sides & drinks',()=>`<div class="cols"><div>${group('French fries','',[['Medium',350],['Large',550]])}${group('Cheese balls','',[['3 pcs',200],['6 pcs',390]])}${group('Special chicken soup','',[['Bowl',250]])}</div><div>${group('Soft drinks','',[['1.5 L',420],['1 L',300],['250 ml',120]])}${group('Mojito','',[['Pomegranate',350],['Blueberry',350]])}</div></div>`]];
+const T=document.getElementById('tabs'),P=document.getElementById('panels');
+tabs.forEach(([t,f],i)=>{
+ const b=document.createElement('button');b.textContent=t;b.setAttribute('role','tab');b.setAttribute('aria-selected',i==0);
+ const p=document.createElement('div');p.className='panel';p.hidden=i!=0;p.setAttribute('role','tabpanel');p.innerHTML=f();
+ b.onclick=()=>{[...T.children].forEach((x,j)=>x.setAttribute('aria-selected',j==i));[...P.children].forEach((x,j)=>x.hidden=j!=i)};
+ T.appendChild(b);P.appendChild(p);
+});
+function draw(f){
+ document.getElementById('ck').innerHTML=group('Crispy chicken',f=='s'?'Spicy':'Normal',pcs.map((n,i)=>[n+(n>1?' pcs':' pc'),chicken[f][i].toLocaleString()]));
+ document.getElementById('wg').innerHTML=group('Crispy wings',f=='s'?'Spicy':'Normal',wp.map((n,i)=>[n+(n>1?' pcs':' pc'),wings[f][i].toLocaleString()]));
+}
+draw('n');
+document.querySelectorAll('.switch button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.switch button').forEach(x=>x.setAttribute('aria-pressed',x==b));draw(b.dataset.f)});
+</script>
+</body>
+</html>
